@@ -11,7 +11,7 @@ public class BookUpdate implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// ê¸€ ìˆ˜ì • ì €ìž¥ë²„íŠ¼ ëˆ„ë¥¼ë•Œ
+		// ¾÷µ¥ÀÌÆ®
 		BookDao dao = new BookDao();
 		BookVo vo = new BookVo();
 		vo.setbCode(request.getParameter("bCode"));
