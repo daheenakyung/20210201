@@ -11,10 +11,10 @@ tr.row:hover {
 		alert("도서를 대여하시겠습니까?");
 	}
 	
-	function deleteBook(){
+	function deleteBook(str){
 		var yn = confirm("정말 삭제하시겠습니까?");
 		if (yn) {
-			frm.action = "bookDelete.do";
+			frm.action = "bookDelete.do?row="+str;
 			frm.submit();
 		}
 	}
@@ -47,8 +47,8 @@ tr.row:hover {
 				<td align="center">${vo.bCount }</td>
 				<td align="center"><button type="submit" onclick = "getBook()">대여</button></td>
 				<c:if test="${not empty mid and mauth =='MASTER'}">
-				<td align="center"><button type="submit" onclick = "deleteBook()">삭제</button></td>
-				<td align="center"><button type="button" onclick = "location.href='bookUpdateFrom.do?bCode=${vo.bCode }'">수정</button></td>
+				<td align="center"><button type="submit" onclick = "deleteBook('${vo.bCode}')">삭제</button></td>
+				<td align="center"><button type="button" onclick = "location.href='bookUpdateFrom.do?row=${vo.bCode }'">수정</button></td>
 				</c:if>
 			</tr>
 			</c:forEach>

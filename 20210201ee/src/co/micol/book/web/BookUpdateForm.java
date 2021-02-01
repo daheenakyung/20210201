@@ -11,14 +11,10 @@ public class BookUpdateForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest requset, HttpServletResponse response) {
-		// 책 수정 폼 호출
+		// 梨� �닔�젙 �뤌 �샇異�
 		BookDao dao = new BookDao();
 		BookVo vo = new BookVo();
-		vo.setbCode(requset.getParameter("bCode"));
-		vo.setbName(requset.getParameter("bName"));
-//		vo.setQuanti(Integer.parseInt(requset.getParameter("quanti")));
-//		vo.setbCount(Integer.parseInt(requset.getParameter("bCount")));
-		
+		vo.setbCode(requset.getParameter("row"));
 		vo = dao.select(vo);
 		requset.setAttribute("vo", vo);
 		return "book/bookUpdateForm";

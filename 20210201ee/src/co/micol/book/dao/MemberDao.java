@@ -6,13 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.micol.book.common.DAO;
+import co.micol.book.vo.BookVo;
 import co.micol.book.vo.MemberVo;
 
 public class MemberDao extends DAO {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
-	// 회원 전체 조회
+	// �쉶�썝 �쟾泥� 議고쉶
 	public ArrayList<MemberVo> selectMemList() {
 		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
 		String sql = "SELECT * FROM MEM";
@@ -36,8 +37,29 @@ public class MemberDao extends DAO {
 
 		return list;
 	}
+	
+	public MemberVo select(MemberVo vo) {
+		String sql = "SELECT * FROM MEM WHERE MEMBERID = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getmId());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new MemberVo();
+				vo.setmId(rs.getString("MEMBERID"));
+				vo.setmName(rs.getString("MEMBERNAME"));
+				vo.setmTel(rs.getString("MEMBERTEL"));
+				vo.setmAdd(rs.getString("MEMBERADDRESS"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return vo;
+	} 
 
-	// 회원 등록 - 사용자가 할 수 있게
+	// �쉶�썝 �벑濡� - �궗�슜�옄媛� �븷 �닔 �엳寃�
 	public int insert(MemberVo vo) {
 		String sql = "INSERT INTO MEM(MEMBERID, MEMBERNAME, MEMBERPASSWORD, MEMBERTEL, MEMBERADDRESS) VALUES (?, ?, ?, ?, ?)";
 		int n = 0;
@@ -58,7 +80,7 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	// 회원 수정 - 관리자
+	// �쉶�썝 �닔�젙 - 愿�由ъ옄
 	public int update(MemberVo vo) {
 		String sql = "UPDATE MEM SET MEMBERPASSWORD = ?, MEMBERTEL=?, MEMBERADDRESS = ? WHERE MEMBERID = ?";
 		int n = 0;
@@ -78,7 +100,7 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	// 회원 삭제 - 관리자
+	// �쉶�썝 �궘�젣 - 愿�由ъ옄
 	public int delete(MemberVo vo) {
 		String sql = "DELETE FROM MEM WHERE MEMBERID =?";
 		int n = 0;
@@ -94,7 +116,7 @@ public class MemberDao extends DAO {
 		return n;
 	}
 
-	// 로그인
+	// 濡쒓렇�씤
 	public MemberVo login(MemberVo vo) {
 		String sql = "SELECT * FROM MEM WHERE MEMBERID = ?";
 		try {
@@ -114,8 +136,8 @@ public class MemberDao extends DAO {
 		return vo;
 	}
 
-	// 아이디 중복 체크
-	public boolean isIdCheck(String id) { // id중복체크를 위한 메소드
+	// �븘�씠�뵒 以묐났 泥댄겕
+	public boolean isIdCheck(String id) { // id以묐났泥댄겕瑜� �쐞�븳 硫붿냼�뱶
 		boolean bool = true;
 		String sql = "SELECT MEMBERID FROM MEMR WHERE MEMBERID = ?";
 		try {

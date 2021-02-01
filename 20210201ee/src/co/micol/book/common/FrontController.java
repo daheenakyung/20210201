@@ -17,6 +17,12 @@ import co.micol.book.web.BookUpdateForm;
 import co.micol.book.web.BookDelete;
 import co.micol.book.web.BookForm;
 import co.micol.book.web.InsertForm;
+import co.micol.mem.web.MemDelete;
+import co.micol.mem.web.MemInsert;
+import co.micol.mem.web.MemList;
+import co.micol.mem.web.MemUpForm;
+import co.micol.mem.web.MemUpdate;
+import co.micol.mem.web.MeminForm;
 import co.micol.member.web.JoinForm;
 import co.micol.member.web.Login;
 import co.micol.member.web.LoginForm;
@@ -37,23 +43,27 @@ public class FrontController extends HttpServlet {
     }
 
 	
-	public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) throws ServletException {
 		map.put("/main.do", new MainCommand());
-		map.put("/loginForm.do", new LoginForm()); //ë¡œê·¸ì¸
-		map.put("/login.do", new Login()); //ë¡œê·¸ì¸ì²˜ë¦¬
-		map.put("/bookForm.do", new BookForm()); //ë„ì„œ í¼ í˜¸ì¶œ
-		map.put("/insertForm.do", new InsertForm()); // ìƒˆ ë„ì„œ í¼
-		map.put("/bookInsert.do", new BookInsert()); //ë“±ë¡
-		map.put("/bookDelete.do", new BookDelete()); //ì‚­ì œ
-		map.put("/bookUpdateFrom.do", new BookUpdateForm()); //ì±… ìˆ˜ì • í¼ í˜¸ì¶œ
-		map.put("/bookUpdate.do", new BookUpdate()); //ì±… ìˆ˜ì •
-		map.put("/joinForm.do", new JoinForm()); //íšŒì›ê°€ì… í¼ í˜¸ì¶œ
-		map.put("/memberjoin.do", new MemberJoin());//íšŒì›ê°€ì…ì™„ë£Œ
-		map.put("/idCheck.do", new MemberIdCheck());//ì•„ì´ë”” ì²´í¬
-		map.put("/logout.do", new Logout());  //ë¡œê·¸ì•„ì›ƒ
-
+		map.put("/loginForm.do", new LoginForm()); //·Î±×ÀÎ
+		map.put("/login.do", new Login()); //·Î±×ÀÎÃ³¸®
+		map.put("/bookForm.do", new BookForm()); //µµ¼­ Æû È£Ãâ
+		map.put("/insertForm.do", new InsertForm()); // »õ µµ¼­ Æû
+		map.put("/bookInsert.do", new BookInsert()); //µî·Ï
+		map.put("/bookDelete.do", new BookDelete()); //»èÁ¦
+		map.put("/bookUpdateFrom.do", new BookUpdateForm()); //Ã¥ ¼öÁ¤ Æû È£Ãâ
+		map.put("/bookUpdate.do", new BookUpdate()); //Ã¥ ¼öÁ¤
+		map.put("/joinForm.do", new JoinForm()); //È¸¿ø°¡ÀÔ Æû È£Ãâ
+		map.put("/memberjoin.do", new MemberJoin());//È¸¿ø°¡ÀÔ¿Ï·á
+		map.put("/idCheck.do", new MemberIdCheck());//¾ÆÀÌµğ Ã¼Å©
+		map.put("/logout.do", new Logout());  //·Î±×¾Æ¿ô
+		map.put("/memList.do", new MemList()); //È¸¿ø Á¶È¸
+		map.put("/memDelete.do", new MemDelete()); //È¸¿ø »èÁ¦
+		map.put("/meminForm.do", new MeminForm()); //¸â¹ö Ãß°¡ Æû
+		map.put("/memInsert.do", new MemInsert()); //¸â¹ö Ãß°¡
+		map.put("/memUpForm.do", new MemUpForm()); //¸â¹ö ¼öÁ¤ Æû
+		map.put("/memUpdate.do", new MemUpdate()); //¸â¹ö ¼öÁ¤
 	}
-
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

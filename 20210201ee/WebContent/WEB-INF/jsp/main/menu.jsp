@@ -45,7 +45,7 @@ body {
 				<div class="w3-dropdown-content w3-bar-block w3-card-4">
 					<a href="bookForm.do" class="w3-bar-item w3-button">도서등록</a>
 					<a href="#" class="w3-bar-item w3-button">대여관리</a>
-					<a href="#" class="w3-bar-item w3-button">회원관리</a>
+					<a href="memList.do" class="w3-bar-item w3-button">회원관리</a>
 				</div>
 			</c:if>
 			</div>

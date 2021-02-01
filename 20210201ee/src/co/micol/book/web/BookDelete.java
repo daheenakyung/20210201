@@ -11,10 +11,10 @@ public class BookDelete implements Command {
 
 	@Override
 	public String exec(HttpServletRequest requset, HttpServletResponse response) {
-		// 책 삭제
+		// 梨� �궘�젣
 		BookDao dao = new BookDao();
 		BookVo vo = new BookVo();
-		vo.setbCode(requset.getParameter("bCode"));
+		vo.setbCode(requset.getParameter("row"));
 		
 		int n = dao.delete(vo);
 		
